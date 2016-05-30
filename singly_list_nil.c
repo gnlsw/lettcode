@@ -139,6 +139,8 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
     struct ListNode *pNode      = VOS_NULL_PTR;
     struct ListNode *pNewNode   = VOS_NULL_PTR;
     int carrier = 0;
+    int dwLeftVal;
+    int dwRightVal;
     int val;
 
     pResult = initListNode();
@@ -146,17 +148,43 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
 
     while((VOS_NULL_PTR != pLeftNode) && (VOS_NULL_PTR != pRightNode))
     {
-        val     = (pLeftNode->val + pRightNode->val + carrier) % 10;
-        carrier = (pLeftNode->val + pRightNode->val + carrier) / 10;
+        if(VOS_NULL_PTR == pLeftNode)
+        {
+            dwLeftVal = 0;
+        }
+        else
+        {
+            dwLeftVal = pLeftNode->val;
+            pLeftNode = pLeftNode->next;
+        }
+
+        if(VOS_NULL_PTR == pRightNode)
+        {
+            dwRightVal = 0;
+        }
+        else
+        {
+            dwRightVal = pRightNode->val;
+            pRightNode = pRightNode->next;
+        }
+
+        val     = (dwLeftVal + dwRightVal + carrier) % 10;
+        carrier = (dwLeftVal + dwRightVal + carrier) / 10;
         pNewNode = (struct ListNode *)malloc(sizeof(struct ListNode));
         pNewNode->val = val;
         pNewNode->next = VOS_NULL_PTR;
         pNode->next = pNewNode;
         pNode = pNewNode;
-
-        pLeftNode  = pLeftNode->next;
-        pRightNode = pRightNode->next;
     }
+
+    if(0 != carrier)
+    {
+        pNewNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+        pNewNode->val = carrier;
+        pNewNode->next = VOS_NULL_PTR;
+        pNode->next = pNewNode;
+    }
+
 
     return pResult;
 }
