@@ -26,6 +26,7 @@ int printListNode(struct ListNode *pHead);
 int main()
 {
     struct ListNode *pList_1;
+    struct ListNode *pList_2;
     int    nums[ARRAY_SIZE] = {1, 2, 3, 4};
     int    i;
 
@@ -35,7 +36,14 @@ int main()
         addListNodeToTail(pList_1, nums[i]);
     }
 
+    pList_2 = initListNode();
+    for(i = 0; i < ARRAY_SIZE; i++)
+    {
+        addListNodeToHead(pList_2, nums[i]);
+    }
+
     printListNode(pList_1);
+    printListNode(pList_2);
 
     return 0;
 }
