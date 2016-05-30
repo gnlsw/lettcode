@@ -55,6 +55,15 @@ int main()
     pResult = addTwoNumbers(pList_1, pList_2);
     printListNode(pResult);
 
+    deleteListNodeFromTail(pResult);
+    printListNode(pResult);
+    deleteListNodeFromHead(pResult);
+    printListNode(pResult);
+    deleteListNodeFromHead(pResult);
+    printListNode(pResult);
+    deleteListNodeFromHead(pResult);
+    printListNode(pResult);
+
     return 0;
 }
 
