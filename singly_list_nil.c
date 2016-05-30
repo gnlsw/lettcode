@@ -25,17 +25,17 @@ int printListNode(struct ListNode *pHead);
 
 int main()
 {
-    struct ListNode *pHead;
+    struct ListNode *pList_1;
     int    nums[ARRAY_SIZE] = {1, 2, 3, 4};
     int    i;
 
-    pHead = initListNode();
+    pList_1 = initListNode();
     for(i = 0; i < ARRAY_SIZE; i++)
     {
-        addListNodeToTail(pHead, nums[i]);
+        addListNodeToTail(pList_1, nums[i]);
     }
 
-    printListNode(pHead);
+    printListNode(pList_1);
 
     return 0;
 }
