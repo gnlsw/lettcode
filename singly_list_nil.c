@@ -20,6 +20,7 @@ struct ListNode {
 #define ARRAY_SIZE 4
 
 int addListNodeToTail(struct ListNode *pHead, int val);
+int addListNodeToHead(struct ListNode *pHead, int val);
 struct ListNode *initListNode();
 int printListNode(struct ListNode *pHead);
 
