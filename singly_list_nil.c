@@ -23,11 +23,13 @@ int addListNodeToTail(struct ListNode *pHead, int val);
 int addListNodeToHead(struct ListNode *pHead, int val);
 struct ListNode *initListNode();
 int printListNode(struct ListNode *pHead);
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2);
 
 int main()
 {
     struct ListNode *pList_1;
     struct ListNode *pList_2;
+    struct ListNode *pResult;
     int    nums[ARRAY_SIZE] = {1, 2, 3, 4};
     int    i;
 
@@ -45,6 +47,9 @@ int main()
 
     printListNode(pList_1);
     printListNode(pList_2);
+
+    pResult = addTwoNumbers(pList_1, pList_2);
+    printListNode(pResult);
 
     return 0;
 }
@@ -126,14 +131,50 @@ int printListNode(struct ListNode *pHead)
 }
 
 
-#if 0
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
 {
-    while((l1 != 0) && (l2 != 0))
+    struct ListNode *pLeftNode  = l1->next;
+    struct ListNode *pRightNode = l2->next;
+    struct ListNode *pResult    = VOS_NULL_PTR;
+    struct ListNode *pNode      = VOS_NULL_PTR;
+    struct ListNode *pNewNode   = VOS_NULL_PTR;
+    int carrier = 0;
+    int val;
+
+    pResult = initListNode();
+    pNode   = pResult;
+
+    while((VOS_NULL_PTR != pLeftNode) && (VOS_NULL_PTR != pRightNode))
     {
-        pstNode = (struct ListNode*)malloc(sizeof(struct ListNode));
-        pstNode->val = pstNode_1->val + pstNode_2->val;
+        val     = (pLeftNode->val + pRightNode->val + carrier) % 10;
+        carrier = (pLeftNode->val + pRightNode->val + carrier) / 10;
+        pNewNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+        pNewNode->val = val;
+        pNewNode->next = VOS_NULL_PTR;
+        pNode->next = pNewNode;
+        pNode = pNewNode;
+
+        pLeftNode  = pLeftNode->next;
+        pRightNode = pRightNode->next;
     }
+
+    return pResult;
 }
-#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
