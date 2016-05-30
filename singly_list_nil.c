@@ -117,6 +117,52 @@ int addListNodeToTail(struct ListNode *pHead, int val)
     return VOS_OK;
 }
 
+int deleteListNodeFromHead(struct ListNode *pHead)
+{
+    struct ListNode *pNode = VOS_NULL_PTR;
+    if(VOS_NULL_PTR == pHead)
+    {
+        /* 增加枚举定义，区分返回值 */
+        return VOS_ERR;
+    }
+    if(VOS_NULL_PTR == pHead->next)
+    {
+        return VOS_ERR;
+    }
+
+    pNode = pHead->next;
+    pHead->next = pNode->next;
+    free(pNode);
+
+    return VOS_OK;
+}
+
+int deleteListNodeFromTail()
+{
+    struct ListNode *pNode = VOS_NULL_PTR;
+    if(VOS_NULL_PTR == pHead)
+    {
+        /* 增加枚举定义，区分返回值 */
+        return VOS_ERR;
+    }
+    if(VOS_NULL_PTR == pHead->next)
+    {
+        return VOS_ERR;
+    }
+
+    pNode = pHead;
+    while(VOS_NULL_PTR != pNode->next->next)
+    {
+        pNode = pNode->next;
+    }
+
+    pDeleteNode = pNode->next;
+    pNode->next = VOS_NULL_PTR;
+    free(pDeleteNode);
+
+    return VOS_OK;
+}
+
 int printListNode(struct ListNode *pHead)
 {
     struct ListNode *pNode;
