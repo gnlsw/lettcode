@@ -22,6 +22,8 @@ struct ListNode {
 
 int addListNodeToTail(struct ListNode *pHead, int val);
 int addListNodeToHead(struct ListNode *pHead, int val);
+int deleteListNodeFromHead(struct ListNode *pHead);
+int deleteListNodeFromTail(struct ListNode *pHead);
 struct ListNode *initListNode();
 int printListNode(struct ListNode *pHead);
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2);
@@ -119,7 +121,7 @@ int addListNodeToTail(struct ListNode *pHead, int val)
 
 int deleteListNodeFromHead(struct ListNode *pHead)
 {
-    struct ListNode *pNode = VOS_NULL_PTR;
+    struct ListNode *pNode       = VOS_NULL_PTR;
     if(VOS_NULL_PTR == pHead)
     {
         /* 增加枚举定义，区分返回值 */
@@ -137,9 +139,10 @@ int deleteListNodeFromHead(struct ListNode *pHead)
     return VOS_OK;
 }
 
-int deleteListNodeFromTail()
+int deleteListNodeFromTail(struct ListNode *pHead)
 {
     struct ListNode *pNode = VOS_NULL_PTR;
+    struct ListNode *pDeleteNode = VOS_NULL_PTR;
     if(VOS_NULL_PTR == pHead)
     {
         /* 增加枚举定义，区分返回值 */
