@@ -54,6 +54,28 @@ struct ListNode *initListNode()
     return pNode;
 }
 
+int addListNodeToHead(struct ListNode *pHead, int val)
+{
+    struct ListNode *pNewNode;
+
+    if(VOS_NULL_PTR == pHead)
+    {
+        printf("null list\n");
+        return VOS_ERR;
+    }
+
+    pNewNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+    if(VOS_NULL_PTR == pNewNode)
+    {
+        return VOS_ERR;
+    }
+    pNewNode->val = val;
+    pNewNode->next = pHead->next;
+    pHead->next = pNewNode;
+
+    return VOS_OK;
+}
+
 int addListNodeToTail(struct ListNode *pHead, int val)
 {
     struct ListNode *pNode;
