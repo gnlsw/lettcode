@@ -19,7 +19,7 @@ struct ListNode {
 
 #define ARRAY_SIZE 4
 
-int addListNode(struct ListNode *pHead, int val);
+int addListNodeToTail(struct ListNode *pHead, int val);
 struct ListNode *initListNode();
 int printListNode(struct ListNode *pHead);
 
@@ -32,7 +32,7 @@ int main()
     pHead = initListNode();
     for(i = 0; i < ARRAY_SIZE; i++)
     {
-        addListNode(pHead, nums[i]);
+        addListNodeToTail(pHead, nums[i]);
     }
 
     printListNode(pHead);
@@ -54,7 +54,7 @@ struct ListNode *initListNode()
     return pNode;
 }
 
-int addListNode(struct ListNode *pHead, int val)
+int addListNodeToTail(struct ListNode *pHead, int val)
 {
     struct ListNode *pNode;
     struct ListNode *pNewNode;
