@@ -13,37 +13,27 @@ int main()
 int lengthOfLongestSubstring(char* s)
 {
     int dw_strlen;
-    int *pdw_len;
-    int dw_row;
-    int dw_col;
     int dw_begin;
     int dw_end;
     int dw_index;
-    int dw_len_index;
     int dw_max = 0;
+    int dw_current_len = 0;
 
     dw_strlen = strlen(s);
     if(0 == dw_strlen)
     {
         return 0;
     }
-    pdw_len = (int *)malloc(sizeof(int) * dw_strlen);
-
-    for(dw_len_index = 0; dw_len_index < dw_strlen; dw_len_index++)
-    {
-        pdw_len[dw_len_index] = 0;
-    }
 
     dw_max = 1;
     for(dw_begin = 0; dw_begin < dw_strlen; dw_begin++)
     {
-        pdw_len[dw_begin] = 1;
+        dw_current_len = 1;
         for(dw_end = dw_begin + 1; dw_end < dw_strlen; dw_end++)
         {
-            if(0 == pdw_len[dw_end - 1])
+            if(0 == dw_current_len)
             {
-                pdw_len[dw_end] = 0;
-                continue;
+                break;
             }
 
             for(dw_index = dw_begin; dw_index < dw_end; dw_index++)
@@ -55,20 +45,18 @@ int lengthOfLongestSubstring(char* s)
             }
             if(dw_index == dw_end)
             {
-                pdw_len[dw_index] = pdw_len[dw_index - 1] + 1;
+                dw_current_len++;
             }
             else
             {
                 break;
             }
-            if(pdw_len[dw_end] > dw_max)
+            if(dw_current_len > dw_max)
             {
-                dw_max = pdw_len[dw_end];
+                dw_max = dw_current_len;
             }
         }
     }
-
-    free(pdw_len);
 
     return dw_max;
 }
