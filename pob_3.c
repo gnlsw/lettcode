@@ -26,7 +26,7 @@ int lengthOfLongestSubstring(char* s)
     }
 
     dw_max = 1;
-    for(dw_begin = 0; dw_begin < dw_strlen; dw_begin++)
+    for(dw_begin = 0; dw_begin < dw_strlen - dw_max; dw_begin++)
     {
         dw_current_len = 1;
         for(dw_end = dw_begin + 1; dw_end < dw_strlen; dw_end++)
