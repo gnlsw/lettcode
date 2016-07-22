@@ -16,66 +16,54 @@ int lengthOfLongestSubstring(char* s)
     int *pdw_len;
     int dw_row;
     int dw_col;
+    int dw_begin;
+    int dw_end;
     int dw_index;
     int dw_len_index;
     int dw_max = 0;
 
     dw_strlen = strlen(s);
-    pdw_len = (int *)malloc(sizeof(int) * dw_strlen * dw_strlen);
-
-    for(dw_row = 0; dw_row < dw_strlen; dw_row++)
+    if(0 == dw_strlen)
     {
-        for(dw_col = 0; dw_col < dw_strlen; dw_col++)
-        {
-            dw_len_index = dw_row * dw_strlen + dw_col;
-            pdw_len[dw_len_index] = 0;
-        }
+        return 0;
+    }
+    pdw_len = (int *)malloc(sizeof(int) * dw_strlen);
+
+    for(dw_len_index = 0; dw_len_index < dw_strlen; dw_len_index++)
+    {
+        pdw_len[dw_len_index] = 0;
     }
 
-    for(dw_row = 0; dw_row < dw_strlen; dw_row++)
+    dw_max = 1;
+    for(dw_begin = 0; dw_begin < dw_strlen; dw_begin++)
     {
-        dw_len_index = dw_row * dw_strlen + dw_row;
-        pdw_len[dw_len_index] = 1;
-    }
-
-    for(dw_row = 0; dw_row < dw_strlen; dw_row++)
-    {
-        for(dw_col = dw_row + 1; dw_col < dw_strlen; dw_col++)
+        pdw_len[dw_begin] = 1;
+        for(dw_end = dw_begin + 1; dw_end < dw_strlen; dw_end++)
         {
-            dw_len_index = dw_row * dw_strlen + dw_col - 1;
-            if(0 == pdw_len[dw_len_index])
+            if(0 == pdw_len[dw_end - 1])
             {
-                pdw_len[dw_len_index + 1] = 0;
+                pdw_len[dw_end] = 0;
                 continue;
             }
 
-            for(dw_index = dw_row; dw_index <= dw_col; dw_index++)
+            for(dw_index = dw_begin; dw_index < dw_end; dw_index++)
             {
-                if(s[dw_index] == s[dw_col])
+                if(s[dw_end] == s[dw_index])
                 {
                     break;
                 }
             }
-            if(dw_index == dw_col)
+            if(dw_index == dw_end)
             {
-                pdw_len[dw_len_index + 1] = pdw_len[dw_len_index] + 1;
+                pdw_len[dw_index] = pdw_len[dw_index - 1] + 1;
             }
             else
             {
-                pdw_len[dw_len_index + 1] = 0;
+                pdw_len[dw_index] = 0;
             }
-        }
-    }
-
-
-    for(dw_row = 0; dw_row < dw_strlen; dw_row++)
-    {
-        for(dw_col = 0; dw_col < dw_strlen; dw_col++)
-        {
-            dw_len_index = dw_row * dw_strlen + dw_col;
-            if(pdw_len[dw_len_index] > dw_max)
+            if(pdw_len[dw_end] > dw_max)
             {
-                dw_max = pdw_len[dw_len_index];
+                dw_max = pdw_len[dw_end];
             }
         }
     }
