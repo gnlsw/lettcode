@@ -59,7 +59,7 @@ int lengthOfLongestSubstring(char* s)
             }
             else
             {
-                pdw_len[dw_index] = 0;
+                break;
             }
             if(pdw_len[dw_end] > dw_max)
             {
@@ -67,6 +67,8 @@ int lengthOfLongestSubstring(char* s)
             }
         }
     }
+
+    free(pdw_len);
 
     return dw_max;
 }
