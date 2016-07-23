@@ -26,21 +26,18 @@ int lengthOfLongestSubstring(char* s)
     }
 
     dw_max = 1;
-    for(dw_begin = 0; dw_begin < dw_strlen - dw_max; )
+    dw_current_len = 1;
+    for(dw_begin = 0, dw_end = 1; dw_begin < dw_strlen - dw_max; )
     {
-        dw_current_len = 1;
-        for(dw_end = dw_begin + 1; dw_end < dw_strlen; dw_end++)
+        for(; dw_end < dw_strlen; dw_end++)
         {
-            if(0 == dw_current_len)
-            {
-                break;
-            }
-
             for(dw_index = dw_begin; dw_index < dw_end; dw_index++)
             {
                 if(s[dw_end] == s[dw_index])
                 {
                     dw_begin = dw_index + 1;
+                    dw_current_len = dw_end - dw_begin + 1;
+                    dw_end++;
                     break;
                 }
             }
