@@ -6,7 +6,7 @@ int reverse(int x);
 
 int main()
 {
-    int dw_var = -2147483412;
+    int dw_var = -2147483648;
     int dw_rev = reverse(dw_var);
     
     printf("dw_var = %d, dw_rev = %d\n", dw_var, dw_rev);
@@ -14,47 +14,37 @@ int main()
 
 int reverse(int x)
 {
-    int dw_abs;
-    int dw_var;
-    int dw_remainder;
+    long long l_abs;
+    long long l_var;
+    long long l_remainder;
 
     if(x < 0)
     {
-        dw_abs = (-1) * x;
+        l_abs = (-1) * (long long)x;
     }
     else
     {
-        dw_abs = x;
+        l_abs = x;
     }
     
-    dw_var = 0;
-    while(dw_abs != 0)
+    l_var = 0;
+    while(l_abs != 0)
     {
-        dw_remainder = dw_abs % 10;
-        dw_abs = dw_abs / 10;
+        l_remainder = l_abs % 10;
+        l_abs = l_abs / 10;
 
-        if((dw_var == 0) || (INT_MAX / dw_var >= 10))
-        {
-            dw_var = dw_var * 10;
-        }
-        else
-        {
-            return 0;
-        }
-        if((INT_MAX - dw_var) > dw_remainder)
-        {
-            dw_var = dw_var + dw_remainder;
-        }
-        else
-        {
-            return 0;
-        }
+        l_var = l_var * 10 + l_remainder;
+    }
+
+    if(l_var > INT_MAX)
+    {
+        return 0;
     }
 
     if(x < 0)
     {
-        dw_var = (-1) * dw_var;
+        l_var = (-1) * l_var;
     }
 
-    return dw_var;
+    return (int)l_var;
 }
