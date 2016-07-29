@@ -15,16 +15,8 @@ int main()
 int reverse(int x)
 {
     int dw_abs;
-    int dw_quot;
-    int dw_count;
-    int dw_index;
     int dw_var;
-    int *pdw_arr;
-
-    if((x > -10) && (x < 10))
-    {
-        return x;
-    }
+    int dw_remainder;
 
     if(x < 0)
     {
@@ -35,28 +27,12 @@ int reverse(int x)
         dw_abs = x;
     }
     
-    dw_quot  = dw_abs;
-    dw_count = 0;
-    while(0 != dw_quot)
+    dw_var = 0;
+    while(dw_abs != 0)
     {
-        dw_quot = dw_quot / 10;
-        dw_count++;
-    }
+        dw_remainder = dw_abs % 10;
+        dw_abs = dw_abs / 10;
 
-    pdw_arr = (int *)malloc(sizeof(int) * dw_count);
-    memset(pdw_arr, 0, sizeof(int) * dw_count);
-    dw_quot = dw_abs;
-    dw_count = 0;
-    while(0 != dw_quot)
-    {
-        pdw_arr[dw_count] = dw_quot % 10;
-        dw_quot           = dw_quot / 10;
-        dw_count++;
-    }
-
-    dw_var = pdw_arr[0];
-    for(dw_index = 1; dw_index < dw_count; dw_index++)
-    {
         if((dw_var == 0) || (INT_MAX / dw_var >= 10))
         {
             dw_var = dw_var * 10;
@@ -65,9 +41,9 @@ int reverse(int x)
         {
             return 0;
         }
-        if((INT_MAX - dw_var) > pdw_arr[dw_index])
+        if((INT_MAX - dw_var) > dw_remainder)
         {
-            dw_var = dw_var + pdw_arr[dw_index];
+            dw_var = dw_var + dw_remainder;
         }
         else
         {
